@@ -1,3 +1,8 @@
+/**
+  * Name: Da Meng
+  * EID:  dm37537
+  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -23,7 +28,7 @@ static p_teller teller_list = NULL;
 void teller_check_in(p_teller teller) 
 {
    pthread_mutex_lock(&mutex);
-   pthread_cond_init(&(teller->done), NULL);
+   pthread_cond_init(&teller->done, NULL);
    teller->checked_in = 1; 
    teller->doing_service = 0;
    
@@ -47,7 +52,7 @@ void teller_check_out(p_teller teller)
    // check if the teller is done
    // if not, wait for teller to be done
    while (teller->doing_service) {
-      pthread_cond_wait(&(teller->done), &mutex);
+      pthread_cond_wait(&teller->done, &mutex);
    }
    // remove teller from list
    if (teller == teller_list)
