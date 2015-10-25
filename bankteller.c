@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <time.h>
 #include <pthread.h>
+#include <unistd.h>
 
 static pthread_mutex_t mutex;
 static pthread_cond_t teller_available;
